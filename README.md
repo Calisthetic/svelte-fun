@@ -1,38 +1,35 @@
-# create-svelte
+# I like kittens!
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## Frontend
 
-## Creating a project
+### Docs
 
-If you're seeing this, you've probably already done this step. Congrats!
+Примеры кода можно посмотреть [здесь](https://svelte.dev/examples/declaring-props)
+
+### Creating a project
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
 npm create svelte@latest my-app
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Developing
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+### Building
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Backend
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+**Docker** container [here](https://hub.docker.com/repository/docker/calisthetic/olimpiadaapi/general)
+
+Open **Docker** app, search for `olimpiadaapi` and run it
+
+! Don't forget to change api url in [api-context.js](https://github.com/Calisthetic/svelte-fun/tree/main/src/lib/utils/api-context.js)
+
+![guide screenshot](./readme-images/start-docker.png)
