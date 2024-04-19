@@ -1,7 +1,22 @@
 <script>
+	import { role } from './../lib/stores/roleStore.js';
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+	import { browser } from '$app/environment';
+	import { writable } from 'svelte/store'
+	import { onMount } from 'svelte';
+	//const storedValue = browser ? window.localStorage.getItem("role") : null;
+
+	// const storedValue = writable(JSON.parse(browser ? localStorage.getItem('role') : null))
+	// if (browser)
+	// 	storedValue.subscribe((value) => window.localStorage.role = JSON.stringify(value))
+
+	let storedValue;
+	role.subscribe((val)=> {
+		storedValue = val
+	})
+	
 </script>
 
 <header>
@@ -12,27 +27,35 @@
 	</div>
 
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
+			{#if (storedValue === 1)}
+				<li aria-current={$page.url.pathname === '/users' ? 'page' : undefined}>
+					<a href="/users">Users</a>
+				</li>
+			{/if}
+			{#if (storedValue === 2)}
+				<li aria-current={$page.url.pathname === '/equipment' ? 'page' : undefined}>
+					<a href="/equipment">Equipment</a>
+				</li>
+			{/if}
+			{#if !storedValue}
+				<li aria-current={$page.url.pathname === '/signin' ? 'page' : undefined}>
+					<a href="/signin">Sign in</a>
+				</li>
+			{/if}
+			{#if storedValue}
+				<li aria-current={$page.url.pathname === '/signout' ? 'page' : undefined}>
+					<a href="/signout">Sign out</a>
+				</li>
+			{/if}
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+		<a href="https://github.com/Calisthetic/svelte-fun">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>
@@ -42,6 +65,10 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		--background: rgba(255, 255, 255, 0.7);
+		background: var(--background);
+		background-size: contain;
+		box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2);
 	}
 
 	.corner {
@@ -66,17 +93,6 @@
 	nav {
 		display: flex;
 		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
 	}
 
 	ul {
@@ -88,8 +104,6 @@
 		justify-content: center;
 		align-items: center;
 		list-style: none;
-		background: var(--background);
-		background-size: contain;
 	}
 
 	li {
