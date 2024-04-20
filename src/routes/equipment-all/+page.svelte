@@ -51,7 +51,7 @@
 </script>
 
 <svelte:head>
-  <title>Equipment</title>
+  <title>All equipment</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
@@ -89,7 +89,7 @@
         <p style="color: red">{error.message}</p>
     {/await}
   </div>
-  <button on:click={() => {goto("/equipment/add")}}>Добавить</button>
+  <button class="add-btn" on:click={() => {goto("/equipment-all/add")}}>Добавить</button>
 </section>
 
 <style>
@@ -165,4 +165,6 @@
   }
 
   p {margin: 0px;}
+
+  .add-btn {margin-bottom: 16px;}
 </style>
