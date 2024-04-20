@@ -10,7 +10,6 @@
   let price = ''
   let number = ''
   let namePlaceholder = ''
-  let pricePlaceholder = ''
   let selectedAudience
   let selectedStatus
 
@@ -19,7 +18,7 @@
   $: {
     if (currentEquipment) {
       namePlaceholder = currentEquipment.name
-      pricePlaceholder = currentEquipment.price
+      price = currentEquipment.price
       number = currentEquipment.number
       selectedAudience = (currentEquipment.audienceId ?? 0)
       selectedStatus = currentEquipment.equipmentStatusId

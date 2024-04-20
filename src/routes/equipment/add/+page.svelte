@@ -6,6 +6,7 @@
   let name = ''
   let price = ''
   let number = ''
+  let image
   let selectedAudience
   let selectedStatus
   
@@ -39,24 +40,25 @@
     // Prevent default form submission
     event.preventDefault();
 
-    if (!selectedStatus || !browser) {
+    if (!selectedStatus || !browser || image.length !== 1) {
       alert("Something went wrong")
       return
     }
+
+    const formData = new FormData()
+    formData.append('Name', name)
+    formData.append('audienceId', selectedAudience === 0 ? null : selectedAudience)
+    formData.append('userId', window.localStorage.getItem("id"))
+    formData.append('number', number)
+    formData.append('equipmentStatusId', selectedStatus)
+    formData.append('price', price)
+    formData.append('image', image[0])
+    console.log(image)
+
     // Send a request to the server for authentication
     await fetch(apiUrl + 'Equipments', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        audienceId: selectedAudience === 0 ? null : selectedAudience,
-        userId: window.localStorage.getItem("id"),
-        number,
-        equipmentStatusId: selectedStatus,
-        price
-      }),
+      body: formData,
     })
     .then((res) => {
       if (res.status !== 201)
@@ -114,6 +116,9 @@
         <option value="0" disabled>Server error...</option>
       {/await}
     </select>
+    
+    <label for="image">Выберите картинку</label>
+    <input type="file" id="image" name="image" bind:files={image} accept="image/jpeg, image/png">
    
     <button type="submit">Let's gooo</button>
    </form>
