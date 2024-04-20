@@ -14,6 +14,7 @@
 
 	let storedValue;
 	role.subscribe((val)=> {
+		console.log(val)
 		storedValue = val
 	})
 	
@@ -34,6 +35,9 @@
 			{#if (storedValue === 1)}
 				<li aria-current={$page.url.pathname === '/users' ? 'page' : undefined}>
 					<a href="/users">Users</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/equipmentall' ? 'page' : undefined}>
+					<a href="/equipmentall">All equipment</a>
 				</li>
 			{/if}
 			{#if (storedValue === 2)}

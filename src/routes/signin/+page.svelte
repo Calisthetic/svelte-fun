@@ -19,13 +19,19 @@
       },
       body: JSON.stringify({ login, password }),
     })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Cry")
+      }
+      return res.json()
+    })
     .then((data) => {
       console.log(data);
       if (!browser) {
         throw new Error("fufel")
       }
-      window.localStorage.setItem("role", data.role)
+      window.localStorage.setItem("role", data.role === "Админ" ? 1 : 2)
+      window.localStorage.setItem("id", data.id)
       role.set(data.role === "Админ" ? 1 : 2)
 		  goto(data.role === "Админ" ? '/users' : '/equipment');
     })

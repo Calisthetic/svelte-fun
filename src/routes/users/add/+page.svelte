@@ -122,7 +122,7 @@
     margin-top: 8px;
     margin-bottom: 4px;
   }
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], input[type=number], select {
     border-radius: 4px;
     border: 2px ridge var(--color-grey);
   }

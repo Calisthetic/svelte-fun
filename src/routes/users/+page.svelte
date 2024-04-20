@@ -12,7 +12,7 @@
       let response = await fetch(apiUrl + "Users");
       data = await response.json();
     } catch(err) {
-      console.log(err);
+      alert(err.message);
     }
   }
   updateUsers.subscribe(async () => {
