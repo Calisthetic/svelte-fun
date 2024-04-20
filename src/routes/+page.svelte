@@ -1,10 +1,9 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
 
 	const buttonClickHandler = () => {
-		if (browser) {
-			window.location.href = '/signin';
-		}
+		goto("signin")
 	}
 </script>
 

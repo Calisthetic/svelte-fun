@@ -36,8 +36,8 @@
 				<li aria-current={$page.url.pathname === '/users' ? 'page' : undefined}>
 					<a href="/users">Users</a>
 				</li>
-				<li aria-current={$page.url.pathname === '/equipmentall' ? 'page' : undefined}>
-					<a href="/equipmentall">All equipment</a>
+				<li aria-current={$page.url.pathname === '/equipment-all' ? 'page' : undefined}>
+					<a href="/equipment-all">All equipment</a>
 				</li>
 			{/if}
 			{#if (storedValue === 2)}
